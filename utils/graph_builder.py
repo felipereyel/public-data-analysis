@@ -2,6 +2,8 @@ from numpy import polyfit, poly1d, arange
 from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 
+plt.rcParams['figure.figsize'] = (10, 12)
+
 
 def create_disper_graph(result, result_headers, regiao):
     x = result[result_headers[0]].to_numpy().astype('float64')
@@ -15,8 +17,8 @@ def create_disper_graph(result, result_headers, regiao):
 
     rsqr_score = r2_score(y, p(x))
     title = f"{regiao}\n" + \
-            f"Coeficiente {float(p[1])} porcento por hora aula\n" + \
-            f"R2 Score: {rsqr_score}"
+            f"Coeficiente {float(p[1]):.2f} porcento por hora aula\n" + \
+            f"R2 Score: {rsqr_score:.4f}"
 
     plt.title(title)
     plt.savefig(f'../q2/{regiao}.png')
