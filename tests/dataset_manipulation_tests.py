@@ -29,16 +29,16 @@ class MergeOnHeadersTest(unittest.TestCase):
             'col2': ['a', 'b', 'b', 'c'],
             'col3': [True, False, True, False]
         })
+        self.d2 = {
+            'col1': [1, 2, 3, 3],
+            'col2': ['a', 'b', 'b', 'c'],
+            'col4': ['True', 'False', 'True', 'False']
+        }
         self.expected_result_dict = {
             'col1': {0: 1, 1: 2, 2: 3, 3: 3},
             'col2': {0: 'a', 1: 'b', 2: 'b', 3: 'c'},
             'col3': {0: True, 1: False, 2: True, 3: False},
             'col4': {0: 'True', 1: 'False', 2: 'True', 3: 'False'}
-        }
-        self.d2 = {
-            'col1': [1, 2, 3, 3],
-            'col2': ['a', 'b', 'b', 'c'],
-            'col4': ['True', 'False', 'True', 'False']
         }
 
     def test_merge_on_headers_with_success(self):
@@ -92,4 +92,3 @@ class ReduceOnItemsTest(unittest.TestCase):
         with self.assertRaises(KeyError) as error:
             reduce_on_items(self.df, {'col4': 'AinXabituka'})
         self.assertEqual('col4', error.exception.args[0])
-
